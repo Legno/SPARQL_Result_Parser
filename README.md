@@ -8,7 +8,7 @@ JSONで受け取ったSPARQLの検索結果をイテレータ風に扱えるよ�
 ------------
 	$.ajax({
 		url: "http://ja.dbpedia.org/sparql",
-		data: {query: "select * where{?s ?p ?o}limit 100";output: "json"},
+		data: {query: "select * where{?s ?p ?o}limit 100",output: "json"},
 		success: makeTable
 	});
 	
@@ -17,13 +17,13 @@ JSONで受け取ったSPARQLの検索結果をイテレータ風に扱えるよ�
 		result = resultParse(data);
 		
 		var str = new String("<tr>");
-		for(var i=0; i<re.getKeyListLength();i++){
-			str += "<td>"+re.getKey(i)+"</td>";
+		for(var i=0; i<result.getKeyListLength();i++){
+			str += "<td>"+result.getKey(i)+"</td>";
 		}
 		str += "</tr>";
-		while(re.next()){ //検索結果を1組進める
-			for(var i=0; i < re.getLength();i++){
-				str += "<td><pre>"+re.getValue(i)+"</pre></td>";
+		while(result.next()){ //検索結果を1組進める
+			for(var i=0; i < result.getLength();i++){
+				str += "<td><pre>"+result.getValue(i)+"</pre></td>";
 				//ここではgetValueに数値を渡しているが
 				//result.getValue("s")のようにSPARQL内で使用した変数名を直接指定することも可能
 			}
