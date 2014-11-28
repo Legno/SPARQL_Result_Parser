@@ -13,7 +13,7 @@ JSONで受け取ったSPARQLの検索結果をイテレータ風に扱えるよ�
 	});
 	
 	function makeTable(data){
-		//エンドポイントから返ってきたjsonを引数として渡す
+		//SPARQLエンドポイントから返ってきたjsonを引数として渡す
 		result = resultParse(data);
 		
 		var str = new String("<tr>");
