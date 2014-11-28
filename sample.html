@@ -1,0 +1,55 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=SHIFT-JIS">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript" src="result_parser.js"></script>
+<script type="text/javascript">
+
+	function SparqlSend(){
+		$.ajax({
+			url: "http://ja.dbpedia.org/sparql",
+			data: {query: "select * where{?s ?p ?o}limit 100",output: "json"},
+			success: makeTable
+		});
+	}
+
+
+	function makeTable(data){
+		re = resultParse(data);
+		$("#table1").empty();
+		console.log(re);
+		var str = new String("<tr>");
+		for(var i=0; i<re.getKeyListLength();i++){
+			str += "<td>"+re.getKey(i)+"</td>";
+		}
+		str += "</tr>";
+		while(re.next()){
+			for(var i=0; i < re.getLength();i++){
+				str += "<td><pre>"+re.getValue(i)+"</pre></td>";
+			}
+			str += "</tr>";
+		}
+		$("#table1").append(str);
+	}
+	function getErrorMsg(eType,eMsg,eMsg2){
+		alert(eMsg+"\n\n"+eMsg2);
+	}
+
+</script>
+</head>
+
+<body>
+<h1>検索結果</h1>
+<table border=1 id="table1">
+</table>
+
+<br><br><br>
+SPARQL入力
+<form id="form1">
+</form>
+<input type="button" value="SPARQL送信" onclick="SparqlSend()">
+
+</body>
+
+</html>
