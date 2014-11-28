@@ -37,7 +37,7 @@ JSONで受け取ったSPARQLの検索結果をイテレータ風に扱えるよ�
 * `getJson()`	検索結果をJSON形式で取得する
 * `getKeyList()`	KeyListを配列として取得する
 * `getKeyListLength()`	KeyListの長さを数値として取得する
-* `**getKey(i)**`	KeyListのi番目の値を取得する
+* **`getKey(i)`**	KeyListのi番目の値を取得する
 * `getValueList()`	ValueListを配列として取得する
 * `getValueListLength()`	ValueListの長さを数値として取得する
 * `**next()**`	ValueListを1行分進める。ValueListの長さを超えた場合falseを返し、そうでない場合はtrueを返す
